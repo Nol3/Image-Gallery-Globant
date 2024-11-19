@@ -11,9 +11,9 @@ Pinterest-style Layout: The images are displayed in a masonry grid layout.
 <h2>How to Run</h2>
 Clone the repository:
 
-Open terminal and put: "docker-compose up --build"
+Open terminal "cd ex00" and put: "docker-compose up --build"
 
-The app its going to run at http://localhost:3000
+The app will be running at http://localhost:3000
 
 <h2>TODO:</h2>
 Favorites Section: The section is in place, but the logic to tag and save favorite photos needs to be implemented.
