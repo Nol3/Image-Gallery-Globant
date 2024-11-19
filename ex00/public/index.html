@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Arima:wght@100..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>Globant Piscine Project 5</title>
+</head>
+<body>
+
+    <header>
+        <a class="nav" href="login.html">Login</a>
+        <div id="search-bar" class="search-bar">
+            <h2 class="title">Buscador</h1>
+            <input type="text" name="searchTerm" id="searchTerm" placeholder="Escribe que quieres...">
+            <button onclick="buscarImg()">Buscar</button>
+        </div>
+        <a class="nav" href="favorites.html">Favorites</a>
+    </header>
+
+    <main>
+		<h2 class="title">Image Gallery</h2>
+        <div class="results image-grid" id="results"></div>
+        <script src="script_finder.js"></script>
+		<div id="image-grid" class="image-grid"></div>
+		<div id="loader" class="loader" style="display: none;"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My Web Project</p>
+    </footer>
+
+    <!-- Link to external JavaScript -->
+    <script src="script.js"></script>
+    <script src="script_finder.js"></script>
+    <script src="server.js"></script>
+</body>
+</html>

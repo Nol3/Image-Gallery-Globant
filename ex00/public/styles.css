@@ -1,0 +1,97 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: darkblue;
+}
+
+body {
+    font-family: Arima, Arial, sans-serif;
+    background: radial-gradient(
+        #ffcf33,
+        #ffcf33 20%,
+        #ffff66 21%,
+        #bbeeff 100%
+      );
+    font-size: 16px;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    background: rgb(9, 195, 195);
+    color: #fff;
+    padding: 20px;
+    text-align: right;
+    border-radius: 25px;
+}
+
+.nav {
+	text-decoration: none;
+	color: #fff;
+	padding: 0 10px;
+	font-size: 24px;
+    font-weight: bold;
+}
+
+main {
+	text-align: center;
+    margin: 20px 0;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* Estilos para el grid de imágenes */
+img {
+    max-width: 100%;
+    margin-bottom: 1em;
+    display: block;
+    outline: 2px solid whitesmoke;
+}
+
+.image-grid {
+    columns: 5 320px;
+    column-gap: 1em;
+}
+
+.image-item {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+}
+
+.image-item:hover {
+    transform: scale(1.05);
+}
+
+.loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #333;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

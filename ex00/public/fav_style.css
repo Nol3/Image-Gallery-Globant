@@ -1,0 +1,55 @@
+header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    background: rgb(9, 195, 195);
+    color: #fff;
+    padding: 20px;
+    text-align: right;
+    border-radius: 25px;
+}
+
+body {
+    font-family: Arima, Arial, sans-serif;
+	/* background: radial-gradient(
+        red,
+		red	 20%,
+        pink	 21%,
+        lightblue 100%
+      ); */
+	background-image: url("poke2.jpg");
+	background-size: cover;
+	background-position: center;
+    background-repeat: no-repeat;
+    font-size: 16px;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+}
+
+.nav {
+	text-decoration: none;
+	color: #fff;
+	padding: 0 10px;
+	font-size: 24px;
+    font-weight: bold;
+}
+
+main {
+	text-align: center;
+    margin: 20px 0;
+	color: white;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #666;
+}
