@@ -20,47 +20,6 @@ Aplicación web que muestra una galería de imágenes desde Unsplash, con un dis
 ```bash
 git clone <url-del-repositorio>
 cd <nombre-del-repositorio>
-
-cd ex00
-docker-compose up --build
-
-### Plan:
-1. Modificar el enfoque para usar variables de entorno en Docker
-2. Actualizar docker-compose.yml
-3. Modificar 
-
-README.md
-
-
-
-### 1. Crear docker-compose.yml
-```yaml
-version: '3.8'
-services:
-  web:
-    build: .
-    ports:
-      - "3000:3000"
-    environment:
-      - UNSPLASH_CLIENT_ID=01NaKsZIj_hfxDAHQ8XhFdiMgZomw97WXjgJRzTBrW4
-      - UNSPLASH_CLIENT_SECRET=_YDtSUV07C6FgoVJbKvP6rM8EjLVYa9nvSWQCmdwIiE
-      - REDIRECT_URI=http://localhost:3000/auth/unsplash/callback
-      - SESSION_SECRET=667263
-      - PORT=3000
-```
-
-### 2. Actualizar 
-
-README.md
-
-
-```markdown
-<h2>Configuración</h2>
-
-1. Clonar el repositorio:
-```bash
-git clone <url-del-repositorio>
-cd <nombre-del-repositorio>
 ```
 
 2. Ejecutar con Docker:

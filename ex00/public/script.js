@@ -2,8 +2,8 @@ const accessKey = '01NaKsZIj_hfxDAHQ8XhFdiMgZomw97WXjgJRzTBrW4';
 const imageContainer = document.getElementById('image-grid');
 let page = 1;
 let isLoading = false;
-const minimumImageCount = 36;  // Número mínimo de imágenes que queremos cargar inicialmente
-const imagesPerPage = 30;  // Número de imágenes por solicitud
+const minimumImageCount = 16;  // Número mínimo de imágenes que queremos cargar inicialmente
+const imagesPerPage = 16;  // Número de imágenes por solicitud
 let loadedImagesCount = 0;  // Para llevar la cuenta de cuántas imágenes hemos cargado
 
 // Función para cargar imágenes
