@@ -33,17 +33,18 @@
     </header>
 
     <main>
-        <div class="results image-grid" id="results"></div>
-        <script src="script_finder.js"></script>
-		<div id="image-grid" class="image-grid"></div>
-		<div id="loader" class="loader" style="display: none;"></div>
+        <div id="image-grid" class="image-grid"></div>
+        <div id="results" class="results image-grid" style="display: none;"></div>
+        <div id="loader" class="loader" style="display: none;"></div>
     </main>
 
     <footer>
         <p>&copy; by alcarden <br> 42Málaga</p>
     </footer>
-    <!-- Link to external JavaScript -->
+
+    <!-- Primero cargar script.js para las imágenes aleatorias -->
     <script src="script.js"></script>
+    <!-- Después cargar script_finder.js para la búsqueda -->
     <script src="script_finder.js"></script>
 </body>
 </html>

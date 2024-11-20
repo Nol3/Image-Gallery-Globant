@@ -88,6 +88,7 @@ body {
 
 .icon-button1:hover, .icon-button2:hover {
     background-color: var(--gray-200);
+    border-radius: 50%;
 }
 
 .icon-image {
