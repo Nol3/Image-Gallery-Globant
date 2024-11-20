@@ -146,26 +146,43 @@ body {
     display: block !important;
 }
 
-/* Estilos para el grid de imágenes */
-img {
-    max-width: 100%;
-    display: block;
-}
-
-.image-grid img {
-    outline: 2px solid whitesmoke;
-}
-
+/* Nuevo estilo para el grid de imágenes */
 .image-grid {
-    columns: 5 320px;
+    display: block;
+    column-count: 5;
     column-gap: 1em;
+    padding: 1em;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+@media (max-width: 1200px) {
+    .image-grid { column-count: 4; }
+}
+
+@media (max-width: 1000px) {
+    .image-grid { column-count: 3; }
+}
+
+@media (max-width: 800px) {
+    .image-grid { column-count: 2; }
+}
+
+@media (max-width: 400px) {
+    .image-grid { column-count: 1; }
+}
+
+.image-container {
+    display: block;
+    width: auto;
+    margin-bottom: 1em;
+    break-inside: avoid;
 }
 
 .image-item {
-    width: 100%;
+    width: auto;
     height: auto;
-    object-fit: cover;
-    border-radius: 5px;
+    border-radius: 8px;
     transition: transform 0.3s ease;
 }
 
@@ -270,4 +287,45 @@ footer {
 
 .heart-icon:hover {
     transform: scale(1.2);
+}
+
+.results {
+    column-count: 5;
+    column-gap: 1em;
+    padding: 1em;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Asegurarse de que los resultados de búsqueda también usen el mismo estilo */
+#results .image-container {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+}
+
+/* Ajustar el hover effect */
+.image-container:hover .image-item {
+    transform: scale(1.02);
+}
+
+.no-results, .error-message {
+    text-align: center;
+    padding: 2em;
+    margin: 2em auto;
+    max-width: 600px;
+}
+
+.reset-button {
+    margin-top: 1em;
+    padding: 0.5em 1em;
+    background-color: #05a081;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.reset-button:hover {
+    background-color: #048669;
 }

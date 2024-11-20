@@ -14,27 +14,45 @@ function fetchImages(page) {
     const url = `https://api.unsplash.com/photos/random?client_id=${accessKey}&count=${imagesPerPage}`;
 
     fetch(url)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
         .then(data => {
+            if (!data || data.length === 0) {
+                throw new Error('No images received');
+            }
             displayImages(data);
             loadedImagesCount += data.length;  // Incrementa el contador de imágenes cargadas
             isLoading = false;
             
             // Si no hemos alcanzado el mínimo de imágenes cargadas, cargamos más
             if (loadedImagesCount < minimumImageCount) {
-                page++;
-                fetchImages(page);  // Solicita más imágenes
+                fetchImages(page + 1);  // Solicita más imágenes
             }
         })
         .catch(error => {
             console.error('Error fetching images:', error);
+            imageContainer.innerHTML += `<p class="error-message">Error loading images: ${error.message}</p>`;
             isLoading = false;
         });
 }
 
 // Función para mostrar las imágenes
 function displayImages(images) {
+    if (!Array.isArray(images)) {
+        console.error('Expected array of images');
+        return;
+    }
+
     images.forEach(image => {
+        if (!image || !image.urls || !image.urls.small) {
+            console.error('Invalid image data:', image);
+            return;
+        }
+
         const imageContainer = document.createElement('div');
         imageContainer.classList.add('image-container');
 
@@ -42,6 +60,11 @@ function displayImages(images) {
         imgElement.src = image.urls.small;
         imgElement.alt = image.alt_description || 'Unsplash Image';
         imgElement.classList.add('image-item');
+        
+        // Añadir event listener para manejar errores de carga de imagen
+        imgElement.onerror = function() {
+            this.src = './assets/error-image.png'; // Asegúrate de tener una imagen de error
+        };
 
         const heartIcon = document.createElement('img');
         heartIcon.src = './assets/corazon.svg';
@@ -83,8 +106,7 @@ function displayImages(images) {
             }
         });
 
-        imageContainer.appendChild(imgElement);
-        imageGrid.appendChild(imageContainer);
+        document.getElementById('image-grid').appendChild(imageContainer);
     });
 }
 
