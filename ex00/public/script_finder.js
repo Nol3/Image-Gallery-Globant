@@ -1,32 +1,57 @@
 // archivo: app.js
 
-async function buscarImg() {
-    const apiKey = '01NaKsZIj_hfxDAHQ8XhFdiMgZomw97WXjgJRzTBrW4'; // Reemplaza con tu clave de API
-    const searchTerm = document.getElementById('searchTerm').value;
-    const url = `https://api.unsplash.com/search/photos?query=${searchTerm}&per_page=12&client_id=${apiKey}`;
+const searchForm = document.getElementById('search-form');
+const searchInput = document.getElementById('search-query');
+const resultsDiv = document.getElementById('results');
+let searchPage = 1;
+let currentSearchQuery = '';
+let isSearching = false;
 
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-        mostrarResultados(data.results);
-    } catch (error) {
-        console.error('Error al obtener las imágenes:', error);
-    }
+searchForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    currentSearchQuery = searchInput.value;
+    searchPage = 1;
+    resultsDiv.innerHTML = ''; // Limpiar resultados anteriores
+    searchImages();
+});
+
+function searchImages() {
+    if (isSearching) return;
+    isSearching = true;
+
+    const url = `https://api.unsplash.com/search/photos?query=${currentSearchQuery}&page=${searchPage}&per_page=30&client_id=${accessKey}`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            if (data.results && data.results.length > 0) {
+                displaySearchResults(data.results);
+            }
+            isSearching = false;
+        })
+        .catch(error => {
+            console.error('Error searching images:', error);
+            isSearching = false;
+        });
 }
 
-function mostrarResultados(imagenes) {
-    const resultsDiv = document.getElementById('results');
-    resultsDiv.innerHTML = ''; // Limpiar resultados previos
-
-    if (imagenes.length === 0) {
-        resultsDiv.innerHTML = '<p>No se encontraron imágenes.</p>';
-        return;
-    }
-
-    imagenes.forEach(imagen => {
+function displaySearchResults(images) {
+    images.forEach(image => {
         const imgElement = document.createElement('img');
-        imgElement.src = imagen.urls.small;
-        imgElement.alt = imagen.alt_description;
+        imgElement.src = image.urls.small;
+        imgElement.alt = image.alt_description || 'Unsplash Image';
+        imgElement.classList.add('image-item');
         resultsDiv.appendChild(imgElement);
     });
 }
+
+// Infinite scroll para resultados de búsqueda
+window.addEventListener('scroll', () => {
+    if (currentSearchQuery && !isSearching) {
+        const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+        if (scrollTop + clientHeight >= scrollHeight - 100) {
+            searchPage++;
+            searchImages();
+        }
+    }
+});

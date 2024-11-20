@@ -4,14 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Unsplash</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="fav_style.css">
 </head>
 <body>
+    <header class="header">
+        <h1 class="title">Dashboard</h1>
+        <a class="nav" href="landing.html">
+            <img src="./assets/perfil.svg" alt="Home" class="icon-image">
+            Home
+        </a>
+    </header>
+    
     <div class="dashboard-container">
-        <h1 class="title">Bienvenido, <span id="username"></span></h1>
-        <div id="userInfo"></div>
-        <div id="userPhotos"></div>
-        <button onclick="window.location.href='index.html'" class="button">Ir a Inicio</button>
+        <div id="userInfo" class="user-info"></div>
+        <div id="userPhotos" class="image-grid"></div>
+        <button onclick="window.location.href='landing.html'" class="button">Ir a Inicio</button>
     </div>
     <script src="dashboard.js"></script>
 </body>

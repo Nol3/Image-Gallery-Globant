@@ -1,48 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Arima:wght@100..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <title>Globant Piscine Project 5</title>
+    <link rel="stylesheet" href="fav_style.css">
+    <title>Login - Image Gallery</title>
 </head>
 <body>
-
-    <header>
-        <a class="nav" href="login.html">Login</a>
-        <div id="search-bar" class="search-bar">
-            <h2 class="title">Buscador</h2>
-            <input type="text" name="searchTerm" id="searchTerm" placeholder="Escribe que quieres...">
-            <button onclick="buscarImg()">Buscar</button>
-        </div>
-        <a class="nav" href="favorites.html">Favorites</a>
-    </header>
-
-    <main>
-        <div class="results image-grid" id="results"></div>
-        <script src="script_finder.js"></script>
-		<div id="image-grid" class="image-grid"></div>
-		<div id="loader" class="loader" style="display: none;"></div>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 My Web Project</p>
-    </footer>
-
     <div class="login-container">
-        <h1 class="nav">Login</h1>
-        <h1 class="nav">Iniciar sesión</h1>
-        <button id="unsplashLoginBtn" class="button">Login con Unsplash</button>
-        <img id="profileImage" class="profile-img hidden" src="" alt="Perfil">
+        <h1>Image Gallery</h1>
+        <p>Por favor, inicia sesión para ver la galería de imágenes</p>
+        <button id="unsplashLoginBtn" class="button">Iniciar sesión con Unsplash</button>
+        <div id="error-message" style="color: red; display: none; margin-top: 10px;"></div>
     </div>
-    <!-- Link to external JavaScript -->
-    <script src="script.js"></script>
-    <script src="script_finder.js"></script>
-    <script src="server.js"></script>
     <script src="auth.js"></script>
+    <script>
+        // Verificar si hay un error en la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const error = urlParams.get('error');
+        if (error) {
+            const errorDiv = document.getElementById('error-message');
+            errorDiv.style.display = 'block';
+            errorDiv.textContent = 'Error de autenticación: ' + error;
+        }
+    </script>
 </body>
 </html>

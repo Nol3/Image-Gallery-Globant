@@ -17,6 +17,15 @@ app.use(session({
     saveUninitialized: true
 }));
 
+// Modificar la ruta principal
+app.get('/', (req, res) => {
+    if (!req.session.accessToken) {
+        res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    } else {
+        res.redirect('/landing.html');
+    }
+});
+
 // En server.js
 app.get('/auth/unsplash/callback', async (req, res) => {
     console.log('1. Llegó al callback con código:', req.query.code);
@@ -54,7 +63,7 @@ app.get('/auth/unsplash/callback', async (req, res) => {
         req.session.username = response.data.username;
         req.session.userId = response.data.user_id;
 
-        res.redirect('/dashboard');
+        res.redirect('/landing.html'); // Cambiar redirección a landing.html
     } catch (error) {
         console.error('Error completo:', error);
         console.error('Error detallado:', {
@@ -95,10 +104,10 @@ app.get('/api/user', async (req, res) => {
     }
 });
 
-// Ruta para servir dashboard.html
+// Modificar la ruta /dashboard
 app.get('/dashboard', (req, res) => {
     if (!req.session.accessToken) {
-        return res.redirect('/login.html');
+        return res.redirect('/'); // Cambiado de '/login.html' a '/'
     }
     res.sendFile(path.join(__dirname, 'public', 'dashboard.html'));
 });

@@ -25,6 +25,15 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error en autenticación:', error);
         }
     });
+
+    // Verificar si ya está autenticado al cargar la página
+    fetch('/api/user')
+        .then(response => {
+            if (response.ok) {
+                window.location.href = '/landing.html';
+            }
+        })
+        .catch(error => console.error('Error verificando autenticación:', error));
 });
 
 app.get('/api/user', async (req, res) => {

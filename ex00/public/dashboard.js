@@ -1,19 +1,25 @@
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', async function() {
     try {
+        // Verificar si el usuario está autenticado
         const response = await fetch('/api/user');
+        if (!response.ok) {
+            window.location.href = '/';
+            return;
+        }
+        
         const userData = await response.json();
         
-        document.getElementById('username').textContent = userData.username;
-        
+        // Mostrar información del usuario
         const userInfo = document.getElementById('userInfo');
-        userInfo.innerHTML = `
-            <p>Total Fotos: ${userData.total_photos}</p>
-            <p>Total Likes: ${userData.total_likes}</p>
-            <p>Total Colecciones: ${userData.total_collections}</p>
-        `;
+        if (userInfo) {
+            userInfo.innerHTML = `
+                <h2>Bienvenido, ${userData.username || 'Usuario'}</h2>
+                <p>Email: ${userData.email || 'No disponible'}</p>
+            `;
+        }
         
     } catch (error) {
         console.error('Error:', error);
-        window.location.href = '/login.html';
+        window.location.href = '/';
     }
 });

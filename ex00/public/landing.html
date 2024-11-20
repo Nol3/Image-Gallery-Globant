@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Arima:wght@100..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>Globant Image Gallery</title>
+</head>
+<body>
+    <header class="header">        
+        <img id="home-button" class="home-button" src="./assets/perfil.svg" alt="cora" class="pinterest-icon">
+
+        <form id="search-form" class="search-container">
+            <input type="text" id="search-query" class="search-input" placeholder="Buscar imágenes..." required>
+        </form>
+
+        <div class="header-icons">
+            <a href="favorites.html" class="icon-button1" id="favorites-button">
+                <img src="./assets/corazon_vacio.svg" alt="cora" class="icon-image">
+            </a>
+            <div class="icon-button2">
+                <img id="profile-img" src="./assets/logo.svg" alt="Icono" class="icon-image">
+                <div id="dropdown" class="dropdown-content">
+                    <a href="dashboard.html" id="dashboardButton">Dashboard</a>
+                    <a href="#" id="logoutButton">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="results image-grid" id="results"></div>
+        <script src="script_finder.js"></script>
+		<div id="image-grid" class="image-grid"></div>
+		<div id="loader" class="loader" style="display: none;"></div>
+    </main>
+
+    <footer>
+        <p>&copy; by alcarden <br> 42Málaga</p>
+    </footer>
+    <!-- Link to external JavaScript -->
+    <script src="script.js"></script>
+    <script src="script_finder.js"></script>
+</body>
+</html>
