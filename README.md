@@ -42,8 +42,4 @@ Este enfoque:
 - Facilita la prueba rápida del proyecto
 - Mantiene la seguridad al usar variables de entorno en Docker
 - Separa el entorno de desarrollo del de prueba
-- Evita que los usuarios necesiten crear archivos .envEste enfoque:
-- Facilita la prueba rápida del proyecto
-- Mantiene la seguridad al usar variables de entorno en Docker
-- Separa el entorno de desarrollo del de prueba
 - Evita que los usuarios necesiten crear archivos .env
