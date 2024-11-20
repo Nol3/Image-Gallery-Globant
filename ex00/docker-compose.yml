@@ -4,13 +4,13 @@ services:
   web:
     build: .
     ports:
-      - "3000:3000"  # Cambiado a puerto 3000 que es más común en Node.js
-    volumes:
-      - ./:/app
-      - /app/node_modules
+      - "3000:3000"
     environment:
-      - NODE_ENV=production
-    restart: unless-stopped
+      - UNSPLASH_CLIENT_ID=01NaKsZIj_hfxDAHQ8XhFdiMgZomw97WXjgJRzTBrW4
+      - UNSPLASH_CLIENT_SECRET=_YDtSUV07C6FgoVJbKvP6rM8EjLVYa9nvSWQCmdwIiE
+      - REDIRECT_URI=http://localhost:3000/auth/unsplash/callback
+      - SESSION_SECRET=667263
+      - PORT=3000
 
 volumes:
   db_data:
