@@ -172,16 +172,9 @@ body {
     .image-grid { column-count: 1; }
 }
 
-.image-container {
-    display: block;
-    width: auto;
-    margin-bottom: 1em;
-    break-inside: avoid;
-}
-
 .image-item {
-    width: auto;
-    height: auto;
+    width: 100%;
+    height: 100%;
     border-radius: 8px;
     transition: transform 0.3s ease;
 }
@@ -271,7 +264,11 @@ footer {
 
 .image-container {
     position: relative;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 1rem;
 }
 
 .heart-icon {
@@ -280,7 +277,6 @@ footer {
     right: 10px;
     width: 24px;
     height: 24px;
-    cursor: pointer;
     z-index: 2;
     transition: transform 0.2s;
 }
@@ -301,11 +297,6 @@ footer {
 #results .image-container {
     break-inside: avoid;
     margin-bottom: 1rem;
-}
-
-/* Ajustar el hover effect */
-.image-container:hover .image-item {
-    transform: scale(1.02);
 }
 
 .no-results, .error-message {

@@ -21,7 +21,7 @@ searchForm.addEventListener('submit', function(e) {
     document.getElementById('results').style.display = 'block';
     
     // Mostrar un mensaje de carga
-    resultsDiv.innerHTML = '<div class="loader">Buscando imágenes...</div>';
+    resultsDiv.innerHTML = '<div class="loader"></div>';
     
     // Realizar la búsqueda
     searchImages();

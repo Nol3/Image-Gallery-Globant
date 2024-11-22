@@ -86,6 +86,17 @@ app.get('/config', (req, res) => {
   });
 });
 
+// Agregar nueva ruta para logout antes de app.listen
+app.get('/api/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            return res.status(500).json({ error: 'Error al cerrar sesión' });
+        }
+        res.clearCookie('connect.sid');
+        res.json({ success: true });
+    });
+});
+
 // Ruta para verificar autenticación
 app.get('/api/user', async (req, res) => {
     if (!req.session.accessToken) {

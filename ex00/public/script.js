@@ -179,3 +179,27 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Agregar manejador para el botón de logout
+    const logoutButton = document.getElementById('logoutButton');
+    if (logoutButton) {
+        logoutButton.addEventListener('click', async function(e) {
+            e.preventDefault();
+            try {
+                const response = await fetch('/api/logout');
+                if (response.ok) {
+                    // Limpiar localStorage si tienes datos guardados
+                    localStorage.clear();
+                    // Redirigir al index
+                    window.location.href = '/';
+                } else {
+                    throw new Error('Error al cerrar sesión');
+                }
+            } catch (error) {
+                console.error('Error durante el logout:', error);
+                alert('Error al cerrar sesión');
+            }
+        });
+    }
+});
+
