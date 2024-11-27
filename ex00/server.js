@@ -79,11 +79,12 @@ app.get('/auth/unsplash/callback', async (req, res) => {
     }
 });
 
-// Añadir esta nueva ruta antes de app.listen
+// Modificar la ruta /config para usar directamente el CLIENT_ID
 app.get('/config', (req, res) => {
-  res.json({
-    clientId: process.env.UNSPLASH_CLIENT_ID
-  });
+    // Enviar el CLIENT_ID directamente desde las variables de entorno
+    res.json({
+        clientId: process.env.UNSPLASH_CLIENT_ID || '01NaKsZIj_hfxDAHQ8XhFdiMgZomw97WXjgJRzTBrW4'
+    });
 });
 
 // Agregar nueva ruta para logout antes de app.listen
@@ -97,7 +98,7 @@ app.get('/api/logout', (req, res) => {
     });
 });
 
-// Ruta para verificar autenticación
+// Asegurarse de que todas las rutas API estén definidas antes de la ruta catch-all
 app.get('/api/user', async (req, res) => {
     if (!req.session.accessToken) {
         return res.status(401).json({ error: 'No autenticado' });
@@ -111,16 +112,33 @@ app.get('/api/user', async (req, res) => {
         });
         res.json(userResponse.data);
     } catch (error) {
-        res.status(500).json({ error: 'Error obteniendo datos del usuario' });
+        res.status(401).json({ error: 'Sesión inválida' });
     }
 });
 
 // Modificar la ruta /dashboard
-app.get('/dashboard', (req, res) => {
+app.get('/dashboard', async (req, res) => {
     if (!req.session.accessToken) {
-        return res.redirect('/'); // Cambiado de '/login.html' a '/'
+        return res.redirect('/');
     }
-    res.sendFile(path.join(__dirname, 'public', 'dashboard.html'));
+    try {
+        // Verificar que el token sigue siendo válido
+        await axios.get('https://api.unsplash.com/me', {
+            headers: {
+                'Authorization': `Bearer ${req.session.accessToken}`
+            }
+        });
+        res.sendFile(path.join(__dirname, 'public', 'dashboard.html'));
+    } catch (error) {
+        // Si el token no es válido, redirigir al login
+        req.session.destroy();
+        res.redirect('/');
+    }
+});
+
+// Agregar una ruta catch-all para el SPA
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // Mantén tu configuración del servidor
