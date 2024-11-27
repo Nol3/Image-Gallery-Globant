@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/server.js"
+    }
+  ],
+  "env": {
+    "UNSPLASH_CLIENT_ID": "01NaKsZIj_hfxDAHQ8XhFdiMgZomw97WXjgJRzTBrW4",
+    "UNSPLASH_CLIENT_SECRET": "_YDtSUV07C6FgoVJbKvP6rM8EjLVYa9nvSWQCmdwIiE",
+    "REDIRECT_URI": "https://image-gallery-globant.vercel.app/auth/unsplash/callback",
+    "SESSION_SECRET": "667263"
+  }
+}
